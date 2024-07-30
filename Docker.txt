@@ -1,0 +1,71 @@
+Docker Registry, Docker Container, Docker Images
+- Docker Registry adalah sebuah repository atau sebuah penyimpanan image terpusat. Sederhananya, kita dapat menginstall images/aplikasi eperti php, MySQL, Nginx, golang, dll ke dalam docker kita sendiri. (mirip seperti menginstall packages pada node modules).
+- Container adalah wadah pada docker dimana mirip seperti sebuah aplikasi.
+- Images adalah sebuah aplikasi yang sudah siap diinstal/dijalankan.
+- Container adalah wadahnya, sedangkan Images adalah Isi yang akan dijalankan didalam wadah Container tersebut.
+
+source: https://viandwi24.medium.com/belajar-docker-mengenal-apa-itu-registry-images-docker-host-docker-client-docker-engine-4e085baa22c4
+
+--------------- DOCKER IMAGE ---------------
+
+1. docker image ls
+- show all list installed docker image from docker registry
+
+2. docker image pull nama_images_registry:tag
+- e.g: docker image pull redis   [same as --> pull redis:lastest]
+- download/pull images from registry to our docker container
+
+3. docker image rm redis:tag
+- e.g: docker image rm redis:lastest
+- we can also write "docker image rm redis" without "lastest", because the default is latest tag
+- remove a docker images from out docker container
+
+4. docker build -t nama_image:tag Dockerfile_folder
+- we can also write "." for "folder-dockerfile" if the command directory in the same file as Dockerfile
+- create/build docker image so that it can be used in docker container
+
+
+------------- DOCKER CONTAINER -------------
+
+4. docker container ls / docker container ls -a
+- show a running container
+- with "-a" we can show all running or not running container
+
+5. docker container create --name container_name image_name:tag
+- e.g: docker container create --name contohredis redis:latest
+- create a docker container
+
+6. docker container start containerId/containerName
+- e.g: docker container start contohredis
+- run a docker container
+
+7. docker container stop containerId/containerName
+- e.g: docker container stop contohredis
+- run a docker container
+
+8. docker container rm containerId/containerName
+- e.g: docker container rm contohredis
+- remove/delete a docker container (we need stop the container first if the container is running).
+
+9. docker container create --name container_name --publish port:tcp_port image_name: tag
+- e.g docker container create --name contohredis1 --publish 8080:6379 redis
+
+
+Container Resource Limit
+10. docker container stats
+- check all the running docker used resource
+1. -- memory  (secara default memakan 100% memory)
+- ukuran memory:
+  1. b (bytes) --> 10b
+  2. kb (kilo bytes) --> 100kb
+  3. m (mega bytes) --> 10m
+  4. g (giga bytes) --> 10g
+
+2. --cpus  (secara default memakan 100% cpus)
+e.g 1.5 maka container bisa menggunakan 1 dan 1/2 CPU Core
+
+example resource Limit
+docker container create --name contohredis --publish 8081:6379 --memory 10m --cpus 0.5 redis:latest
+
+
+Container Network

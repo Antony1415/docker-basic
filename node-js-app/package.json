@@ -1,0 +1,12 @@
+{
+  "name": "node-js-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "json-server --watch db.json --port 3060"
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-beta.1"
+  }
+}
